@@ -8,7 +8,9 @@ echo -e "\n#####################################################################
 
 # input a task no.
 read -p "Task No.? (1,3,5...): " task_no
-if [ `expr $task_no % 2` == 0 ]; then
+if [[ ! $task_no =~ ^[0-9]+$ ]]; then
+    echo -e "Error: Invailed value.\n"; return 0
+elif [ `expr $task_no % 2` == 0 ]; then
     echo -e "Error: Isn't odd number.\n"; return 0
 else
     task_id="$(printf "%02d" $task_no)-$(printf "%02d" `expr $task_no + 1`)"
